@@ -3,8 +3,16 @@ public class Visualizer {
     static final int width = 6;
 
     public static void clearConsole() {
-        System.out.print("\033[H\033[2J\033[3J");
-        System.out.flush();
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J\033[3J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            for (int i = 0; i < 30; i++) System.out.println();
+        }
     }
 
     public static <T extends Comparable<T>> void visualizeSort(SortValue<T>[] arr, String stepLabel) {

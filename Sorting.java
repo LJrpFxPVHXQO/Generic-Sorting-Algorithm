@@ -27,42 +27,51 @@ public class Sorting {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        String choice;
 
-        System.out.println("Choose a data type");
-        System.out.println("1. String");
-        System.out.println("2. Integer");
-        System.out.print("Enter choice: ");
-        int dataChoice = scan.nextInt();
+        do {
+            System.out.println("Choose a data type");
+            System.out.println("1. String");
+            System.out.println("2. Integer");
+            System.out.print("Enter choice: ");
+            int dataChoice = scan.nextInt();
 
-        System.out.print("Enter the length of the array: ");
-        int valLength = scan.nextInt();
-        scan.nextLine();
+            System.out.print("Enter the length of the array: ");
+            int valLength = scan.nextInt();
+            scan.nextLine();
 
-        System.out.println("\nChoose a sorting algorithm");
-        System.out.println("1. Insertion Sort");
-        System.out.println("2. Selection Sort");
-        System.out.println("3. Merge Sort");
-        System.out.println("4. Quick Sort");
-        System.out.print("Enter choice: ");
-        int algoChoice = scan.nextInt();
+            System.out.println("\nChoose a sorting algorithm");
+            System.out.println("1. Insertion Sort");
+            System.out.println("2. Selection Sort");
+            System.out.println("3. Merge Sort");
+            System.out.println("4. Quick Sort");
+            System.out.print("Enter choice: ");
+            int algoChoice = scan.nextInt();
 
-        System.out.println("\nChoose either Ascending or Descending");
-        System.out.println("1. Ascending");
-        System.out.println("2. Descending");
-        System.out.print("Enter choice: ");
-        int ascChoice = scan.nextInt();
-        scan.nextLine();
+            System.out.println("\nChoose either Ascending or Descending");
+            System.out.println("1. Ascending");
+            System.out.println("2. Descending");
+            System.out.print("Enter choice: ");
+            int ascChoice = scan.nextInt();
+            scan.nextLine();
 
-        System.out.println("\nEnter " + valLength + " values:");
+            System.out.println("\nEnter " + valLength + " values:");
 
-        if (dataChoice == 1) {
-            SortValue<String>[] stringValues = readUserArray(scan, valLength, s -> s);
-            executeSort(stringValues, algoChoice, ascChoice == 1);
-        } else if (dataChoice == 2) {
-            SortValue<Integer>[] intValues = readUserArray(scan, valLength, Integer::parseInt);
-            executeSort(intValues, algoChoice, ascChoice == 1);
-        }
+            if (dataChoice == 1) {
+                SortValue<String>[] stringValues = readUserArray(scan, valLength, s -> s);
+                executeSort(stringValues, algoChoice, ascChoice == 1);
+            } else if (dataChoice == 2) {
+                SortValue<Integer>[] intValues = readUserArray(scan, valLength, Integer::parseInt);
+                executeSort(intValues, algoChoice, ascChoice == 1);
+            }
 
+            System.out.print("\nDo you want to run another sorting visualization? (y/n): ");
+            choice = scan.nextLine().trim().toLowerCase();
+            System.out.println();
+
+        } while (choice.equals("y") || choice.equals("yes"));
+
+        System.out.println("Program finished.");
         scan.close();
     }
 }
